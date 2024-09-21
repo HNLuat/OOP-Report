@@ -3,7 +3,7 @@ using namespace std;
 struct date{
     int day, month, year;
     bool const thirty_days_month[13] = {0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0};
-    date(int d = 0, int m = 0, int y = 0){
+    date(int d = 1, int m = 1, int y = 1){
         day = d;
         month = m;
         year = y;
@@ -73,7 +73,7 @@ struct date{
 };
 int main()
 {
-    date a(1,1,1);
+    date a;
     cin>>a.day>>a.month>>a.year;
     date nexta = a.next_date();
     date preva = a.previous_date();
