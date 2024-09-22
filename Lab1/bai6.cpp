@@ -95,7 +95,6 @@ struct nhieuhocsinh{
             //tim kiem xau
             int num = int(name.length()) - int(pattern.length());
             for(int j=0; j<=num; j++){
-                if(j!=0&&name[j-1]!=' ') continue;
                 string s = name.substr(j, pattern.length());
                 if(s==pattern){
                     match.push_back(i);
