@@ -9,6 +9,7 @@ double approximated_sin(double x){
     else x = x - (temp+1)*pi;
     double sum = x;
     long long fac = 1;
+    // lien tuc tinh giai thua cua 2*n+1 va (-1)^n
     for(int i=1; i<=7; i++){
         int sign = 1;
         if(i%2 == 1) sign = -1;
