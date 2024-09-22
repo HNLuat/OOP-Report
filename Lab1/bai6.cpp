@@ -108,6 +108,8 @@ struct nhieuhocsinh{
             cout<<"Ho ten: "<<i.ten<<". Toan: "<<i.toan<<". Van: "<<i.van<<". Anh: "<<i.anh;
             cout<<". Diem tb: "<<i.diemtb<<". Phan loai: "<<i.phanloai<<"\n";
         }
+        if(match.size()==0)
+            cout<<"Khong tim thay bat ky hoc sinh nao";
     }
     void diemtoanthapnhat(){
         vector<hocsinh> danhsach;
