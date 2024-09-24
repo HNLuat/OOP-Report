@@ -1,34 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
-struct hocsinh{
+struct HocSinh{
     string ten;
     double toan, van, anh, diemtb;
     string phanloai;
-    string subject[3] = {"toan", "van", "anh"};
+    string tenmonhoc[3] = {"toan", "van", "anh"};
     void nhap(){
         cout<<"Nhap ho ten hoc sinh: ";
         cin.ignore();
         getline(cin, ten);
-        while(!legitname()){
+        while(!TenHopLe()){
             cout<<"Ho ten khong hop le, vui long nhap lai: ";
             getline(cin, ten);
         }
         for(int i=0;i<3;i++){
-            cout<<"Nhap diem "<<subject[i]<<": ";
-            double grades = 0;
-            cin>>grades;
-            while(!legitgrades(grades)){
-                cout<<"Diem "<<subject[i]<<" khong hop le, vui long nhap lai: ";
-                cin>>grades;
+            cout<<"Nhap diem "<<tenmonhoc[i]<<": ";
+            double diem = 0;
+            cin>>diem;
+            while(!DiemHopLe(diem)){
+                cout<<"Diem "<<tenmonhoc[i]<<" khong hop le, vui long nhap lai: ";
+                cin>>diem;
             }
-            if(i==0) toan = grades;
-            if(i==1) van = grades;
-            if(i==2) anh = grades;
+            if(i==0) toan = diem;
+            if(i==1) van = diem;
+            if(i==2) anh = diem;
         }
         capnhatdiemtb();
         capnhatphanloai();
     }
-    bool legitname(){
+    bool TenHopLe(){
         for(int i=0;i<ten.length();i++){
             if(ten[i] == ' ') continue;
             if(ten[i]<'A' || (ten[i]>'Z'&&ten[i]<'a') || ten[i]>'z')
@@ -36,8 +36,8 @@ struct hocsinh{
         }
         return true;
     }
-    bool legitgrades(double grades){
-        return grades>=0&&grades<=10;
+    bool DiemHopLe(double diem){
+        return diem>=0&&diem<=10;
     }
     void capnhatdiemtb(){
         diemtb = (2*toan + van + anh)/4;
@@ -50,90 +50,89 @@ struct hocsinh{
         if(diemtb<5) phanloai = "Yeu";
     }
 };
-struct nhieuhocsinh{
-    vector<hocsinh> student;
+struct NhieuHocSinh{
+    vector<HocSinh> hocsinh;
     int soluong;
     void nhapdulieu(){
         cout<<"Nhap so luong hoc sinh: ";
         cin>>soluong;
         for(int i=0;i<soluong;i++){
-            hocsinh a;
+            HocSinh a;
             a.nhap();
-            student.push_back(a);
+            hocsinh.push_back(a);
         }
     }
-    hocsinh diemtbcaonhat(){
-        hocsinh maxx;
-        maxx.diemtb = -1;
-        for(hocsinh i:student)
-            if(i.diemtb>maxx.diemtb)
-                maxx=i;
+    HocSinh diemtbcaonhat(){
+        HocSinh HSDiemCaoNhat;
+        HSDiemCaoNhat.diemtb = -1;
+        for(HocSinh i:hocsinh)
+            if(i.diemtb>HSDiemCaoNhat.diemtb)
+                HSDiemCaoNhat=i;
         cout<<"Hoc sinh co diem trung binh cao nhat la:\n";
-        cout<<"Ho ten: "<<maxx.ten<<"\n";
-        cout<<"Diem trung binh: "<<maxx.diemtb<<"\n";
-        cout<<"Diem toan: "<<maxx.toan<<"\n";
-        cout<<"Diem van: "<<maxx.van<<"\n";
-        cout<<"Diem anh: "<<maxx.anh<<"\n";
-        cout<<"Phan loai: "<<maxx.phanloai<<"\n";
-        return maxx;
+        cout<<"Ho ten: "<<HSDiemCaoNhat.ten<<"\n";
+        cout<<"Diem trung binh: "<<HSDiemCaoNhat.diemtb<<"\n";
+        cout<<"Diem toan: "<<HSDiemCaoNhat.toan<<"\n";
+        cout<<"Diem van: "<<HSDiemCaoNhat.van<<"\n";
+        cout<<"Diem anh: "<<HSDiemCaoNhat.anh<<"\n";
+        cout<<"Phan loai: "<<HSDiemCaoNhat.phanloai<<"\n";
+        return HSDiemCaoNhat;
     }
     void timhocsinh(){
         cout<<"Nhap ho ten hoc sinh can tim: ";
-        string pattern;
+        string TenhsCanTim;
         cin.ignore();
-        getline(cin, pattern);
+        getline(cin, TenhsCanTim);
         //chuyen ve ki tu thuong de de tim kiem
-        for(int i=0;i<pattern.length();i++)
-            if(pattern[i]>='A'&&pattern[i]<='Z') pattern[i]+=32;
-        vector<hocsinh> match;
+        for(int i=0;i<TenhsCanTim.length();i++)
+            if(TenhsCanTim[i]>='A'&&TenhsCanTim[i]<='Z') TenhsCanTim[i]+=32;
+        vector<HocSinh> DanhSach;
         //duyet qua toan bo hoc sinh
-        for(hocsinh i:student){
-            string name = i.ten;
+        for(HocSinh i:hocsinh){
+            string ten = i.ten;
             //chuyen ve ki tu thuong
-            for(int j=0;j<name.length();j++)
-                if(name[j]>='A'&&name[j]<='Z') name[j]+=32;
+            for(int j=0;j<ten.length();j++)
+                if(ten[j]>='A'&&ten[j]<='Z') ten[j]+=32;
             //tim kiem xau
-            int num = int(name.length()) - int(pattern.length());
+            int num = int(ten.length()) - int(TenhsCanTim.length());
             for(int j=0; j<=num; j++){
-                string s = name.substr(j, pattern.length());
-                if(s==pattern){
-                    match.push_back(i);
+                string s = ten.substr(j, TenhsCanTim.length());
+                if(s==TenhsCanTim){
+                    DanhSach.push_back(i);
                     break;
                 }
             }
         }
         //Xuat ra thong tin hoc sinh da tim duoc
-        for(hocsinh i:match){
+        for(HocSinh i:DanhSach){
             cout<<"Ho ten: "<<i.ten<<". Toan: "<<i.toan<<". Van: "<<i.van<<". Anh: "<<i.anh;
             cout<<". Diem tb: "<<i.diemtb<<". Phan loai: "<<i.phanloai<<"\n";
         }
-        if(match.size()==0)
+        if(DanhSach.size()==0)
             cout<<"Khong tim thay bat ky hoc sinh nao";
     }
     void diemtoanthapnhat(){
-        vector<hocsinh> danhsach;
-        hocsinh minn;
-        minn.toan = 11;
-        for(hocsinh i:student){
-            if(i.toan==minn.toan)
-                danhsach.push_back(i);
-            if(i.toan<minn.toan){
-                danhsach.clear();
-                danhsach.push_back(i);
-                minn=i;
+        vector<HocSinh> DanhSach;
+        int DiemThapNhat = 11;
+        for(HocSinh i:hocsinh){
+            if(i.toan==DiemThapNhat)
+                DanhSach.push_back(i);
+            if(i.toan<DiemThapNhat){
+                DanhSach.clear();
+                DanhSach.push_back(i);
+                DiemThapNhat=i.toan;
             }
         }
         //Xuat ra thong tin hoc sinh
         cout<<"Danh sach hoc sinh co diem toan thap nhat la: \n";
-        for(hocsinh i:danhsach){
-            cout<<"Ho ten: "<<i.ten<<". Toan: "<<i.toan<<". Van: "<<i.van<<". Anh: "<<i.anh;
-            cout<<". Diem tb: "<<i.diemtb<<". Phan loai: "<<i.phanloai<<"\n";
+        for(HocSinh i:DanhSach){
+            cout<<"Ho ten: "<<i.ten<<". Toan: "<<i.toan<<". Van: "<<i.van<<". Anh: "<<i.anh
+                <<". Diem tb: "<<i.diemtb<<". Phan loai: "<<i.phanloai<<"\n";
         }
     }
 };
 int main()
 {
-    nhieuhocsinh s;
+    NhieuHocSinh s;
     s.nhapdulieu();
     s.diemtbcaonhat();
     s.timhocsinh();
