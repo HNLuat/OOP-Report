@@ -1,9 +1,10 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 struct date{
     int day, month, year;
     // luu thang thu i co phai la thang co 30 ngay hay khong
-    bool const thirty_days_month[13] = {0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0};
+    const bool thirty_days_month[13] = {0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0};
     date(int d = 1, int m = 1, int y = 1){
         day = d;
         month = m;
@@ -11,16 +12,17 @@ struct date{
         if(!valid_date())
             cout<<"Invalid date\n";
     }
-    // kiem tra nam nhuan
+    //Truong hop nam nhuan
     bool leap_year(){
         return year%4 == 0;
     }
-    // kiem tra xem ngay do co hop le khong
+    //Ngay do co hop le khong
     bool valid_date(){
         if(month>12 || month<1 || day<1 || year<1) return false;
         if(month == 2){
-            if(leap_year())
+            if(leap_year()){
                 return day<=29;
+            }
             return day<=28;
         }
         if(thirty_days_month[month]) return day<=30;
@@ -75,12 +77,14 @@ struct date{
 };
 int main()
 {
+    cout<<"Enter Day/Month/Year: ";
     date a;
     cin>>a.day>>a.month>>a.year;
     date nexta = a.next_date();
     date preva = a.previous_date();
-    cout<<"Ngay tiep theo la "<<nexta.day<<"/"<<nexta.month<<"/"<<nexta.year<<"\n";
-    cout<<"Ngay truoc do la "<<preva.day<<"/"<<preva.month<<"/"<<preva.year<<"\n";
-    cout<<"a la ngay thu "<<a.day_of_year()<<" trong nam";
+    cout<<"The next day is "<<nexta.day<<"/"<<nexta.month<<"/"<<nexta.year<<"\n";
+    cout<<"The previous day is "<<preva.day<<"/"<<preva.month<<"/"<<preva.year<<"\n";
+    cout<<a.day<<"/"<<a.month<<"/"<<a.year<<" is the "<<a.day_of_year()<<"(th) day of the year";
     return 0;
 }
+
