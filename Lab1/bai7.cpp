@@ -63,7 +63,7 @@ struct Flight {
     string departure_place;
     string arrival_place;
 
-    void nhapdulieu(){
+    void Enter(){
         cout << "Nhap ma chuyen bay: ";
         getline(cin, flight_code);
 
@@ -155,7 +155,7 @@ int main() {
     cin.ignore();
     for(int i=1;i<=n;i++){
         Flight flight;
-        flight.nhapdulieu();
+        flight.Enter();
         flights.push_back(flight);
     }
     sort_flights_by_datetime(flights);
