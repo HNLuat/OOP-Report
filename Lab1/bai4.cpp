@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+// Ham sap xi gia tri sin theo sap xi Taylor
 double approximated_sin(double x){
     double const pi = 3.1415926535897932;
     int temp = int(x/pi);
