@@ -5,6 +5,7 @@ struct HocSinh{
     double toan, van, anh, diemtb;
     string phanloai;
     string tenmonhoc[3] = {"toan", "van", "anh"};
+    // Nhap du lieu 1 hoc sinh
     void nhap(){
         cout<<"Nhap ho ten hoc sinh: ";
         cin.ignore();
@@ -28,6 +29,7 @@ struct HocSinh{
         capnhatdiemtb();
         capnhatphanloai();
     }
+    // Kiem tra dinh dang ten co hop le khong
     bool TenHopLe(){
         for(int i=0;i<ten.length();i++){
             if(ten[i] == ' ') continue;
@@ -36,12 +38,15 @@ struct HocSinh{
         }
         return true;
     }
+    // Kiem tra diem co hop le khong
     bool DiemHopLe(double diem){
         return diem>=0&&diem<=10;
     }
+    // ham cap nhat diem trung binh cua doi tuong
     void capnhatdiemtb(){
         diemtb = (2*toan + van + anh)/4;
     }
+    // ham cap nhat phan loai cua doi tuong
     void capnhatphanloai(){
         if(diemtb>=9) phanloai = "Xuat sac";
         if(diemtb>=8&&diemtb<9) phanloai = "Gioi";
@@ -50,9 +55,11 @@ struct HocSinh{
         if(diemtb<5) phanloai = "Yeu";
     }
 };
+// struct luu tru, quan li nhieu hoc sinh
 struct NhieuHocSinh{
     vector<HocSinh> hocsinh;
     int soluong;
+    // nhap du lieu cua nhieu hoc sinh
     void nhapdulieu(){
         cout<<"Nhap so luong hoc sinh: ";
         cin>>soluong;
@@ -62,6 +69,7 @@ struct NhieuHocSinh{
             hocsinh.push_back(a);
         }
     }
+    // tim va in ra hoc sinh co diem trung binh cao nhat trong danh sach cac hoc sinh
     HocSinh diemtbcaonhat(){
         HocSinh HSDiemCaoNhat;
         HSDiemCaoNhat.diemtb = -1;
@@ -77,6 +85,7 @@ struct NhieuHocSinh{
         cout<<"Phan loai: "<<HSDiemCaoNhat.phanloai<<"\n";
         return HSDiemCaoNhat;
     }
+    // ham tim hoc sinh bang ten
     void timhocsinh(){
         cout<<"Nhap ho ten hoc sinh can tim: ";
         string TenhsCanTim;
@@ -110,6 +119,7 @@ struct NhieuHocSinh{
         if(DanhSach.size()==0)
             cout<<"Khong tim thay bat ky hoc sinh nao";
     }
+    // Ham in ra danh sach hoc sinh co diem toan thap nhat
     void diemtoanthapnhat(){
         vector<HocSinh> DanhSach;
         int DiemThapNhat = 11;
