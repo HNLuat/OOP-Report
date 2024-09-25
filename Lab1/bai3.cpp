@@ -7,11 +7,13 @@ struct Fraction{
         denominator = denom;
         Simplify();
     }
+    // Ham rut gon phan so
     void Simplify(){
         int gcd = __gcd(numerator, denominator);
         numerator = numerator/gcd;
         denominator = denominator/gcd;
     }
+    // Khoi tao cac operator + - * / cho 2 phan so
     Fraction operator + (const Fraction& a) const {
         int denom = denominator*a.denominator;
         int numer = numerator*a.denominator + a.numerator*denominator;
