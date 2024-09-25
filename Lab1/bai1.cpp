@@ -3,6 +3,7 @@ using namespace std;
 
 struct phanso{
     int tu, mau;
+    // Ham rut gon phan so
     void rutgon(){
         int temp = __gcd(tu, mau);
         tu /= temp;
