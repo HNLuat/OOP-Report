@@ -4,6 +4,7 @@ using namespace std;
 struct phanso{
     int tu, mau;
 };
+// Kiem tra xem phan so nao lon hon trong 2 phan so
 phanso phansolonhon(phanso a, phanso b){
     long c = 1L * a.tu * b.mau;
     long d = 1L * a.mau * b.tu;
