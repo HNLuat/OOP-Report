@@ -27,6 +27,7 @@ struct date{
         if(thirty_days_month[month]) return day<=30;
         return day<=31;
     }
+    // Tinh ngay tiep theo
     date next_date(){
         if(!valid_date())
             return date(-1, -1, -1);
@@ -43,6 +44,7 @@ struct date{
             return date(1, month+1, year);
         return date(day+1, month, year);
     }
+    // Tinh ngay truoc do
     date previous_date(){
         if(!valid_date())
             return date(-1, -1, -1);
@@ -59,6 +61,7 @@ struct date{
         }
         return date(day-1, month, year);
     }
+    // tinh ngay nay la ngay thu bao nhieu trong nam
     int day_of_year(){
         if(!valid_date()) return -1;
         int sum = day;
