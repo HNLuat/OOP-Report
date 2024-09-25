@@ -12,9 +12,11 @@ struct date{
         if(!valid_date())
             cout<<"Invalid date\n";
     }
+    // Kiem tra nam nhuan
     bool leap_year(){
         return year%4 == 0;
     }
+    // Kiem tra ngay co hop le khong
     bool valid_date(){
         if(month>12 || month<1 || day<1 || year<1) return false;
         if(month == 2){
@@ -26,6 +28,7 @@ struct date{
         if(thirty_days_month[month]) return day<=30;
         return day<=31;
     }
+    // Tao operator == va <
     bool operator== (const date& a)const {
         return day==a.day&&month==a.month&&year==a.year;
     }
@@ -38,6 +41,7 @@ struct date{
         return year < a.year;
     }
 };
+// Struct luu tru thoi gian trong 1 ngay bao gom gio va phut
 struct time_in_day{
     int hour, minute;
     time_in_day(int h=0, int m=0){
@@ -46,9 +50,11 @@ struct time_in_day{
         if(!valid_time())
             cout<<"Invalid time\n";
     }
+    // gio va phut co hop le khong
     bool valid_time(){
         return hour<24&&hour>=0&&minute<60&&minute>=0;
     }
+    // tao operator <
     bool operator < (const time_in_day& a) const {
         if(hour == a.hour)
             return minute < a.minute;
@@ -63,6 +69,7 @@ struct Flight {
     string departure_place;
     string arrival_place;
 
+    // Ham nhap du lieu cho 1 chuyen bay
     void Enter(){
         cout << "Nhap ma chuyen bay: ";
         getline(cin, flight_code);
@@ -92,7 +99,7 @@ struct Flight {
         getline(cin, arrival_place);
     }
 };
-
+// Ham in ra man hinh cac chuyen bay 
 void display_flights(vector<Flight> flights) {
     for (Flight fl : flights) {
         cout << "Ma chuyen bay: " << fl.flight_code
@@ -102,7 +109,7 @@ void display_flights(vector<Flight> flights) {
              << ", Noi den: " << fl.arrival_place << endl;
     }
 }
-
+// Ham tim kiem chuyen bay theo ma so
 vector<Flight> find_flight_by_code(vector<Flight> flights, string code) {
     vector<Flight> result;
     for (Flight flight : flights)
@@ -122,7 +129,7 @@ vector<Flight> find_flights_by_place(vector<Flight> flights, string place, bool 
     }
     return result;
 }
-
+// Sap xep cac chuyen bay theo thoi gian khoi hanh
 void sort_flights_by_datetime(vector<Flight>& flights) {
     sort(flights.begin(), flights.end(), [](const Flight& f1, const Flight& f2) {
         if (f1.departure_date == f2.departure_date)
@@ -138,7 +145,7 @@ vector<Flight> flights_from_place_on_date(vector<Flight> flights, string place, 
             result.push_back(flight);
     return result;
 }
-
+// Tinh so luong chuyen bay tu 1 noi nay den 1 noi khac
 int count_flights_between_places( vector<Flight> flights, string departure_place, string arrival_place) {
     int cnt = 0;
     for (Flight flight : flights)
