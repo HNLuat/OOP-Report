@@ -12,9 +12,9 @@ public:
     void Xuat();
     float GetTungDo()const;
     float GetHoanhDo() const;
-    void SetTungDo(int Tung);
-    void SetHoanhDo(int Hoanh);
-    void TinhTien(int dx, int dy);
+    void SetTungDo(float Tung);
+    void SetHoanhDo(float Hoanh);
+    void TinhTien(float dx, float dy);
 };
 
 
