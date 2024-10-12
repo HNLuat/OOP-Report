@@ -38,7 +38,7 @@ public:
             cout<<", ";
         }
     }
-    void TinhTien(int x, int y){
+    void TinhTien(float x, float y){
         for(int i=0;i<so_dinh;i++){
             Dinh[i].TinhTien(x, y);
         }
