@@ -5,7 +5,7 @@ class Diem{
 private:
     float iHoanh, iTung;
 public:
-    Diem(int x, int y) : iHoanh(x), iTung(y) {}
+    Diem(float x, float y) : iHoanh(x), iTung(y) {}
     Diem() : iHoanh(0), iTung(0) {}
     void Nhap(){
         cout<<"Nhap toa do x, y: ";
@@ -39,7 +39,7 @@ public:
         });
     }
     Diem TinhTam(){
-        int cx = 0, cy = 0;
+        float cx = 0, cy = 0;
         for(Diem i:Dinh){
             cx+=i.getx();
             cy+=i.gety();
