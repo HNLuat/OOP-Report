@@ -12,7 +12,7 @@ public:
         cout<<"Nhap toa do x, y: ";
         cin>>iHoanh>>iTung;
     }
-    void TinhTien(int dx, int dy){
+    void TinhTien(float dx, float dy){
         iHoanh += dx;
         iTung += dy;
     }
