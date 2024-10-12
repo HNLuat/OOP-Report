@@ -10,8 +10,8 @@ public:
     Diem(float Hoanh, float Tung);
     Diem(const Diem& A);
     void Xuat();
-    int GetTungDo()const;
-    int GetHoanhDo() const;
+    float GetTungDo()const;
+    float GetHoanhDo() const;
     void SetTungDo(int Tung);
     void SetHoanhDo(int Hoanh);
     void TinhTien(int dx, int dy);
